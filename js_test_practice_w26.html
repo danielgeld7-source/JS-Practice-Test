@@ -78,7 +78,7 @@
      QUESTION 1 — Tip Calculator
      Skills: input, Number conversion, calculation, output
      ============================================================ -->
-    <div class="question-block">
+<div class="question-block">
       <h2>
         Question 1 &mdash; Tip Calculator &nbsp;
         <span style="font-size: 0.7em; color: #888">[10 marks]</span>
@@ -129,23 +129,26 @@
         </tr>
       </table>
 
+      <script>
+        function calculateTip() {
+          let bill = Number(document.querySelector("#billBox").value);
+          let pct = Number(document.querySelector("#tipPctBox").value);
+          let tip = bill * (pct / 100);
+          let total = bill + tip;
+          document.querySelector("#tipResultBox").value = tip.toFixed(2);
+          document.querySelector("#totalResultBox").value = total.toFixed(2);
+        }
+      </script>
+
       <!-- Add your HTML elements for Question 1 below this line -->
       <h2>Question 1</h2>
       <br />
       Bill Amount ($): <input type="text" id="billBox" /> <br /><br />
       Tip Percentage (%): <input type="text" id="tipPctBox" /> <br /><br />
-      <!-- Add your button here -->
+      <button onclick="calculateTip()">Calculate</button>
       <br /><br />
-      Tip Amount:
-      <!-- Add your result box here -->
-      <br /><br />
-      Total Bill:
-      <!-- Add your result box here -->
-      <br /><br />
-
-      <script>
-        // WRITE YOUR JAVASCRIPT FOR QUESTION 1 HERE
-      </script>
+      Tip Amount: <input type="text" id="tipResultBox" /> <br /><br />
+      Total Bill: <input type="text" id="totalResultBox" /> <br /><br />
     </div>
 
     <hr />
@@ -208,13 +211,47 @@
         </tr>
       </table>
 
+      <script>
+        function convertTemp() {
+          let temp = Number(document.querySelector("#tempBox").value);
+          let direction = document.querySelector(
+            'input[name="direction"]:checked',
+          );
+          let result;
+
+          if (direction.value === "CtoF") {
+            result = (temp * 9) / 5 + 32;
+          } else {
+            result = ((temp - 32) * 5) / 9;
+          }
+
+          let resultDiv = document.querySelector("#Q2result");
+          resultDiv.textContent =
+            result.toFixed(2) + (direction.value === "CtoF" ? " °F" : " °C");
+
+          // Colour based on result in Celsius
+          let celsius = direction.value === "CtoF" ? temp : result;
+          if (celsius < 0) {
+            resultDiv.style.backgroundColor = "blue";
+            resultDiv.style.color = "white";
+          } else if (celsius > 100) {
+            resultDiv.style.backgroundColor = "red";
+            resultDiv.style.color = "white";
+          } else {
+            resultDiv.style.backgroundColor = "white";
+            resultDiv.style.color = "black";
+          }
+        }
+      </script>
+
       <!-- Add your HTML elements for Question 2 below this line -->
       <h2>Question 2</h2>
       <br />
       Temperature: <input type="text" id="tempBox" /> <br /><br />
-      <!-- Add your radio buttons here -->
+      <input type="radio" name="direction" value="CtoF" checked /> °C to °F
+      &nbsp; <input type="radio" name="direction" value="FtoC" /> °F to °C
       <br /><br />
-      <!-- Add your Convert button here -->
+      <button onclick="convertTemp()">Convert</button>
       <br /><br />
       Result:
       <br />
@@ -231,10 +268,6 @@
         Result will appear here.
       </div>
       <br />
-
-      <script>
-        // WRITE YOUR JAVASCRIPT FOR QUESTION 2 HERE
-      </script>
     </div>
 
     <hr />
