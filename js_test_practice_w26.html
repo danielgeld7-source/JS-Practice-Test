@@ -329,7 +329,43 @@
           <td>/ 2</td>
         </tr>
       </table>
+  <script>
+        function generateTable() {
+          let num = Number(document.querySelector("#tableNumBox").value);
+          let output = "";
+          for (let i = 1; i <= 12; i++) {
+            output += num + " &times; " + i + " = " + num * i + "<br>";
+          }
+          document.querySelector("#Q3output").innerHTML = output;
+        }
 
+        function clearTable() {
+          document.querySelector("#Q3output").innerHTML = "";
+        }
+      </script>
+
+      <!-- Add your HTML elements for Question 3 below this line -->
+      <h2>Question 3</h2>
+      <br />
+      Enter a number: <input type="text" id="tableNumBox" /> <br /><br />
+      <button onclick="generateTable()">Generate</button>
+      &nbsp;
+      <button onclick="clearTable()">Clear</button>
+      <br />
+      <div
+        id="Q3output"
+        style="
+          border: 1px solid #ccc;
+          padding: 10px;
+          min-height: 40px;
+          background-color: #fafafa;
+          width: 220px;
+        "
+      ></div>
+      <br />
+    </div>
+
+    <hr />
       <!-- Add your HTML elements for Question 3 below this line -->
       <h2>Question 3</h2>
       <br />
@@ -514,10 +550,32 @@
         </tr>
       </table>
 
+      <script>
+        function buildList() {
+          let total = 0;
+          let output = "";
+          for (let i = 1; i <= 5; i++) {
+            let num = Number(prompt("Enter number " + i + " of 5:"));
+            total += num;
+            output += "Number " + i + ": " + num + "<br>";
+          }
+          let average = total / 5;
+          output += "<br><strong>Sum: " + total + "</strong><br>";
+          output += "<strong>Average: " + average.toFixed(2) + "</strong>";
+          document.querySelector("#Q5output").innerHTML = output;
+        }
+
+        function clearList() {
+          document.querySelector("#Q5output").innerHTML = "";
+        }
+      </script>
+
       <!-- Add your HTML elements for Question 5 below this line -->
       <h2>Question 5</h2>
       <br />
-      <!-- Add your Build List and Clear buttons here -->
+      <button onclick="buildList()">Build List</button>
+      &nbsp;
+      <button onclick="clearList()">Clear</button>
       <br /><br />
       <div
         id="Q5output"
@@ -530,10 +588,6 @@
         "
       ></div>
       <br />
-
-      <script>
-        // WRITE YOUR JAVASCRIPT FOR QUESTION 5 HERE
-      </script>
     </div>
 
     <hr />
