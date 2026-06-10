@@ -699,7 +699,7 @@
      QUESTION 7 — Click Box Listener
      Skills: addEventListener, removeEventListener, state, DOM output
      ============================================================ -->
-    <div class="question-block">
+      <div class="question-block">
       <h2>
         Question 7 &mdash; Click Box Listener &nbsp;
         <span style="font-size: 0.7em; color: #888">[12 marks]</span>
@@ -762,19 +762,94 @@
         </tr>
       </table>
 
+      <script>
+        let q7Clicks = 0;
+        let q7ColourIndex = 0;
+        let q7ListenerActive = false;
+        let q7Colours = ["lightblue", "lightpink", "lightgreen"];
+
+        function handleQ7BoxClick() {
+          q7Clicks++;
+          q7ColourIndex = (q7ColourIndex + 1) % q7Colours.length;
+
+          let clickBox = document.querySelector("#Q7box");
+          let resultDiv = document.querySelector("#Q7result");
+
+          clickBox.style.backgroundColor = q7Colours[q7ColourIndex];
+          resultDiv.textContent = "Box clicked " + q7Clicks + " time(s).";
+        }
+
+        function addBoxListener() {
+          let clickBox = document.querySelector("#Q7box");
+          let resultDiv = document.querySelector("#Q7result");
+
+          if (!q7ListenerActive) {
+            clickBox.addEventListener("click", handleQ7BoxClick);
+            q7ListenerActive = true;
+            resultDiv.textContent = "Listener added. Click the box.";
+          }
+        }
+
+        function removeBoxListener() {
+          let clickBox = document.querySelector("#Q7box");
+          let resultDiv = document.querySelector("#Q7result");
+
+          clickBox.removeEventListener("click", handleQ7BoxClick);
+          q7ListenerActive = false;
+          resultDiv.textContent = "Listener removed. The box is inactive.";
+        }
+
+        function resetQ7() {
+          let clickBox = document.querySelector("#Q7box");
+          let resultDiv = document.querySelector("#Q7result");
+
+          clickBox.removeEventListener("click", handleQ7BoxClick);
+          q7Clicks = 0;
+          q7ColourIndex = 0;
+          q7ListenerActive = false;
+          clickBox.style.backgroundColor = q7Colours[0];
+          resultDiv.textContent = "Reset complete. Click count is 0.";
+        }
+      </script>
+
       <!-- Add your HTML elements for Question 7 below this line -->
       <h2>Question 7</h2>
       <br />
-      <!-- Add your Add Listener, Remove Listener, and Reset buttons here -->
+      <button onclick="addBoxListener()">Add Listener</button>
+      &nbsp;
+      <button onclick="removeBoxListener()">Remove Listener</button>
+      &nbsp;
+      <button onclick="resetQ7()">Reset</button>
       <br /><br />
-      <!-- Add your clickable box (Q7box) here -->
+      <div
+        id="Q7box"
+        style="
+          width: 220px;
+          padding: 30px;
+          text-align: center;
+          font-weight: bold;
+          background-color: lightblue;
+          border: 2px solid #555;
+          cursor: pointer;
+          user-select: none;
+        "
+      >
+        Click Me!
+      </div>
       <br />
-      <!-- Add your result div (Q7result) here -->
+      <div
+        id="Q7result"
+        style="
+          border: 1px solid #ccc;
+          padding: 10px;
+          min-height: 24px;
+          background-color: #fafafa;
+          width: 280px;
+        "
+      >
+        Press Add Listener to begin.
+      </div>
       <br />
-
-      <script>
-        // WRITE YOUR JAVASCRIPT FOR QUESTION 7 HERE
-      </script>
     </div>
   </body>
 </html>
